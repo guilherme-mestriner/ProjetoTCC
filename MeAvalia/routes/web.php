@@ -20,8 +20,9 @@ Route::get('/', function () {
 
 
 Route::get('login',[AuthController::class,'index'])->name('login');
-
-Route::get('register',[AuthController::class,'register_view'])->name('register');
+Route::post('login',[AuthController::class,'login'])->name('login');
 
 Route::get('register',[Authcontroller::class,'register_view'])->name('register');
-Route::get('register',[Authcontroller::class,'register_view'])->name('register');
+Route::post('register',[Authcontroller::class,'register'])->name('register');
+
+Route::get('home',[AuthController::class,'home'])->name('home');

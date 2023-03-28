@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\user;
 
 class AuthController extends Controller
 {
@@ -26,6 +27,26 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|unique:users|email',
+            'password'=>'required|confirmed'
+        ]);
+
+        User::cretae([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=> \Hash::make($request->password)
+        ]);
+
+        if(\Auth::attempt($request->only('email','password'))){
+            return redirect('home');
+        }
+
+        return redirect('register')->withError('Erro');
+    }
+
+    public function home(){
+        return view('home');
     }
 }
