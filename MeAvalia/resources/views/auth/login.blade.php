@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+    
 
     <div class="container">
         <div class="row">
@@ -32,13 +33,13 @@
                                 <label>Senha</label>
                                 <input type="password" name="senha" class="form-control" placeholder="Senha">
                                 @if ($errors->has('senha'))
-                                    <p class="text-danger">{{ $errors->first('senha') }}</p>
+                                    <p class="text-danger">{{ $errors->first('password') }}</p>
                                 @endif
                             </div>
                             
                             <div class="row">
                                 <div class="col-8 text-left">
-                                    <a href="#" class="btn btn-link">esqueceu a senha?</a>
+                                    <a href="#" class="btn btn-link">Esqueceu a senha?</a>
                                 </div>
                                 <div class="col-4 text-rigth">
                                     <input type="submit" class="btn btn-primary" value=" Cadastrar ">

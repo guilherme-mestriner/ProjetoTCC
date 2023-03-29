@@ -33,7 +33,7 @@ class AuthController extends Controller
             'password'=>'required|confirmed'
         ]);
 
-        User::cretae([
+        User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=> \Hash::make($request->password)
@@ -43,10 +43,16 @@ class AuthController extends Controller
             return redirect('home');
         }
 
-        return redirect('register')->withError('Erro');
+        return redirect('register')->withError('Error');
     }
 
     public function home(){
         return view('home');
+    }
+
+    public function logout(){
+        \Session::flush();
+        \Auth::logout();
+        return redirect('');
     }
 }
